@@ -1,0 +1,12 @@
+.vertical-center { /*alinhamento vertical*/
+    min-height: 70%;  
+    min-height: 70vh; 
+  
+    display: flex;
+    align-items: center;
+  }
+  
+  .horizontal-center {
+      margin: 0 auto;
+      width: 80%;  
+  }

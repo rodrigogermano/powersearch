@@ -1,0 +1,52 @@
+<nav class="navbar navbar-light bg-dark">
+  <div class="container">
+    <a class="navbar-brand text-white" href="#">
+      <span class="material-icons">
+        search
+      </span> Power Search
+    </a>
+    <form class="d-flex">            
+      <button class="btn btn-outline-light" type="submit">         
+          <em class="material-icons">
+            add_circle
+          </em> <span class="material-icons-description"> Documento</span>
+      </button>
+    </form>
+  </div>
+</nav>
+<div class="row" [ngClass]="{'vertical-center horizontal-center' : (result.length == 0)}">
+  <div class="col-3"></div>
+    <div class="col-md-12 col-lg-6">
+      <div class="d-flex justify-content-center mb-4">
+        <img src="assets/search-logo.png" alt="" class="text-center" style="max-width: 200px;" />
+      </div>
+      <div class="input-group mb-3">        
+        <input type="text" class="form-control" [(ngModel)]="data">
+        <span class="input-group-text" id="basic-addon1" (click)="search()">
+          <span class="material-icons">
+            search
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="col-3"></div>
+</div>   
+
+
+<div class="container">
+
+  <div class="card mb-2" *ngFor="let item of result">
+    <div class="card-body">
+      <h5 class="card-title">{{item.document.metadata_storage_name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{item.document.metadata_author}} {{item.document.metadata_storage_last_modified | date:'medium'}}</h6>           
+      <div class="card-text" *ngIf="item.highlights === null" [innerHTML]="item.document.content"></div>
+      <div class="card-text" *ngIf="item.highlights !== null" [innerHTML]="item.highlights.content[0]"></div>
+    </div>    
+  </div>
+</div>
+
+<nav class="navbar fixed-bottom bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="https://github.com/rodrigogermano">Desenvolvido por Rodrigo Germano</a>
+  </div>
+</nav>
