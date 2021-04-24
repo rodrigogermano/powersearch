@@ -21,7 +21,10 @@ Para representar a arquitetura vou usar o [modelo C4](https://c4model.com/).
 # Referências
 
 [Azure Cognitive Search](https://azure.microsoft.com/pt-br/services/search/) 
+
 [Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/)
+
 [The C4 model for visualising software architecture](https://c4model.com/)
+
 [PlantUML - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
 
