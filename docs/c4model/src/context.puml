@@ -1,0 +1,31 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(usuario, "Usuário", "Consegue buscar conteúdo classificado com nível público.")
+Person(visualizador, "Visualizador", "Tem as mesmas permissões que o Usuário e acesso a conteúdo classificado com nível privado.")
+Person(autor, "Autor", "Consegue criar conteúdo em todos os níveis, mas não visualiza conteúdo com nível restrito de outro perfil.")
+Person(gerente, "Gerente", "Consegue criar/visualizar conteúdo em qualquer nível.")
+Person(administrador , "Administrador", "O Administrador tem as mesmas permissões que o Gerente.")
+
+
+System(frontend, "Power Search", "Permite buscar, criar e atualizar documentos com base no nível.")
+System_Ext(blobStorage, "Armazenamento", "Sistema de armazenamentos.")
+System_Ext(machineLearning, "Machine Learning", "Sistema para enriquecimentos dos dados.")
+System_Ext(busca, "Busca", "Sistema responsável por processar as buscas.")
+
+
+Rel(usuario, frontend, "Consulta")
+Rel(visualizador, frontend, "Consulta de nível privado")
+Rel(autor, frontend, "Upload de documentos")
+Rel(gerente, frontend, "Consulta de nível restrito")
+Rel(administrador, frontend, "Configura o nível de acesso do usuário")
+
+Rel(frontend, busca, "Usuário consulta um documento")
+Rel(frontend, blobStorage, "Usuário cria um novo documento")
+
+Rel(busca, blobStorage, "Identifica novos documentos para indexar.")
+Rel(busca, machineLearning, "Enriquece os documentos antes de armazenar.")
+
+@enduml

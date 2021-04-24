@@ -12,15 +12,16 @@ namespace PowerSearch.Api.Controllers
     public class SearchController : ControllerBase
     {
         //https://docs.microsoft.com/pt-br/dotnet/api/overview/azure/search.documents-readme
+        //https://www.youtube.com/watch?v=Mj9h9LHSunw
         [HttpGet("{data}")]
         public async Task<IActionResult> Get(string data)
         {
 
             try
             {
-                string indexName = "powersearch-indice";                
-                Uri endpoint = new Uri("");
-                string key = "";
+                string indexName = "powersearch-indice";
+                Uri endpoint = new Uri("https://teadit.search.windows.net");
+                string key = "A1AB68E478F2089680BD242271E622F4";
 
                 // Create a client
                 AzureKeyCredential credential = new AzureKeyCredential(key);
