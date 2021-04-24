@@ -1,0 +1,37 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(usuario, "Usuário", "Consegue buscar conteúdo classificado com nível público.")
+Person(visualizador, "Visualizador", "Tem as mesmas permissões que o Usuário e acesso a conteúdo classificado com nível privado.")
+Person(autor, "Autor", "Consegue criar conteúdo em todos os níveis, mas não visualiza conteúdo com nível restrito de outro perfil.")
+Person(gerente, "Gerente", "Consegue criar/visualizar conteúdo em qualquer nível.")
+Person(administrador , "Administrador", "O Administrador tem as mesmas permissões que o Gerente.")
+
+System_Boundary(ibs, "Power Search") {
+
+    Container(frontend, "Web Application", "angular", "Fornece o conteúdo estático e o aplicativo de página única do Power Search.")
+    Container(api, "API", "Dotnet core", "Fornece funcionalidade para Power Search por meio de uma API JSON/HTTP.")
+    ContainerDb(database, "Database", "Esquema de banco de dados relacional", " Armazena informações de registro do usuário e nível de acesso.")
+
+    Rel(frontend, api, "Uma nova pesquisa ou gravar um novo arquivo", "HTTPS")
+    Rel(api, database, "Perfil do usuário e nível de acesso", "TCP")
+}
+
+System_Ext(blobStorage, "Armazenamento", "Sistema de armazenamentos.")
+System_Ext(machineLearning, "Machine Learning", "Sistema para enriquecimentos dos dados.")
+System_Ext(busca, "Busca", "Sistema responsável por processar as buscas.")
+
+Rel(usuario, frontend, "Uses", "HTTPS")
+Rel(visualizador, frontend, "Uses", "HTTPS")
+Rel(autor, frontend, "Uses", "HTTPS")
+Rel(gerente, frontend, "Uses", "HTTPS")
+Rel(administrador, frontend, "Uses", "HTTPS")
+
+Rel(api, blobStorage, "Gravar um novo documento", "HTTPS")
+Rel(api, busca, "Consulta", "HTTPS")
+Rel(busca, blobStorage, "Buscar novos documentos para indexar", "HTTPS")
+Rel(busca, machineLearning, "Enriquece os documentos antes de armazenar.", "HTTPS")
+
+@enduml
