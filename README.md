@@ -6,6 +6,8 @@ Para deixar o estudo ainda mais interessante, resolvi tratar um caso real, que �
 
 O objetivo do Power Search é facilitar a forma de armazenamento desses documentos. Nesse processo será possível utilizar o [Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/) para enriquecer o conteúdo extraindo dados de imagens, pessoas, organizações, localizações, etc.
 
+<img src="https://github.com/rodrigogermano/powersearch/blob/main/docs/home.png" alt="drawing" style="width:200px;"/>
+
 # Arquitetura
 
 Para representar a arquitetura vou usar o [modelo C4](https://c4model.com/).
@@ -19,10 +21,7 @@ Para representar a arquitetura vou usar o [modelo C4](https://c4model.com/).
 # Referências
 
 [Azure Cognitive Search](https://azure.microsoft.com/pt-br/services/search/) 
-
 [Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/)
-
 [The C4 model for visualising software architecture](https://c4model.com/)
-
 [PlantUML - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
 
